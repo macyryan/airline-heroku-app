@@ -3,6 +3,7 @@
 import os 
 import pickle 
 from flask import Flask, jsonify, request 
+# adding something so that it will deploy
 
 # by default flask runs on port 5000
 
@@ -63,6 +64,7 @@ def predict_interviews_well(instance):
 
     print("header:", header)
     print("tree:", tree)
+    print("YAY!")
 
     # traverse the tree to make a prediction
     # write a recursive algorithm to do this (predict() for PA6)
