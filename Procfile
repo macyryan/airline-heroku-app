@@ -1,1 +1,1 @@
-web: python airline_satisfaction_app.py
+web: python interview_app.py
