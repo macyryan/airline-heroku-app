@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def index():
     # return content and status code
-    return "Welcome to my App!!", 200
+    return "Welcome to my airline satisfaction predictor!!", 200
 
 # add a route for "/predict" API endpoint
 @app.route("/predict", methods=["GET"])
