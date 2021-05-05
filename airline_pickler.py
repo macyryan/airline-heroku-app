@@ -1,13 +1,5 @@
 import pickle 
-# a standard python library
-# pickle (AKA object serialization): writing a binary representation of an object to a file
-# unpickle (AKA object de-serialization): read a binary representation of an object from a file
-# to load a python object in to memory
 
-
-# for the project... imagine this is a MyRandomForestClassifier
-# for PA6... imagine this is a MyDecisionTreeClassifier
-# both of which were just trained with fit()
 airline_header = ["att0", "att1", "att2", "att3", "att4","att5"]
 
 airline_tree =  \
