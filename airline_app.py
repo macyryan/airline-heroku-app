@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request, render_template, redirect
 app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
-def index_page():
+def index():
     prediction = ""
     if request.method == "POST":
         att0 = request.form("att0", "")
