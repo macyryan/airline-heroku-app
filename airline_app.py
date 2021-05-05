@@ -1,13 +1,28 @@
 import os 
 import pickle 
-from flask import Flask, jsonify, request 
+from flask import Flask, jsonify, request, render_template, redirect
 
 app = Flask(__name__)
 
+@app.route('/', methods = ['GET', 'POST'])
+def index_page():
+    prediction = ""
+    if request.method == "POST":
+        att0 = request.form("att0", "")
+        att1 = request.form("att1", "")
+        att2 = request.form("att2", "")
+        att3 = request.form("att3", "")
+        att4 = request.form("att4", "")
+        att5 = request.form("att5", "")
 
-@app.route("/", methods=["GET"])
-def index():
-    return "Welcome to my airline satisfaction predictor!", 200
+        att2 = int(att2)
+        att5 = int(att5)
+
+        prediction = predict_interviews_well([att0, att1, att2, att3, att4, att5])
+
+    # goes into templates folder and finds given name
+    return render_template("index.html", prediction=prediction) 
+
 
 @app.route("/predict", methods=["GET"])
 def predict():
@@ -57,5 +72,5 @@ def predict_interviews_well(instance):
 
 
 if __name__ == "__main__":
-    port = os.environ.get("PORT", 5000)
+    port = int(os.environ.get("PORT", 5000))
     app.run(debug=False, host="0.0.0.0", port=port)

@@ -4,4 +4,4 @@ FROM continuumio/anaconda3:2020.11
 ADD . /code
 WORKDIR /code
 
-ENTRYPOINT ["python", "interview_app.py"]
+ENTRYPOINT ["python", "airline_app.py"]

@@ -230,8 +230,17 @@ airline_tree =  \
     ]
 ]
 
-# pickle (save to file) header and interview tree as one object
 packaged_object = [airline_header, airline_tree]
 outfile = open("tree.p", "wb")
 pickle.dump(packaged_object, outfile)
 outfile.close()
+
+
+# deserialize to object (unpickle)
+infile = open("tree.p", "rb")
+header2, airline_tree2 = pickle.load(infile)
+infile.close()
+
+# check
+print(header2)
+print(airline_tree2)
