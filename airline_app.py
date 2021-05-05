@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request, render_template, redirect
 app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
-def index():
+def index_page():
     prediction = ""
     if request.method == "POST":
         att0 = request.form("att0", "")
@@ -72,5 +72,5 @@ def predict_interviews_well(instance):
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = os.environ.get("PORT", 5000)
     app.run(debug=False, host="0.0.0.0", port=port)
