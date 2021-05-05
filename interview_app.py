@@ -22,16 +22,24 @@ def index():
 def predict():
     # goal is to parse the query string to the args
     # query args are in the request object
-    level = request.args.get("level", "")
-    lang = request.args.get("lang", "")
-    tweets = request.args.get("tweets", "")
-    phd = request.args.get("phd", "")
-    print("level:", level, lang, tweets, phd)
+    
+    att0 = request.args.get("att0", "")
+    att1 = request.args.get("att1", "")
+    att2 = request.args.get("att2", "")
+    att3 = request.args.get("att3", "")
+    att4 = request.args.get("att4", "")
+    att5 = request.args.get("att5", "")
+
+    att2 = int(att2)
+    att5 = int(att5)
+
+    print("level:", att0, att1, att2, att3, att4, att5)
     # task: extract the other three parameters
     # level, lang, tweets, phd
     # make a prediction with the tree
     # respond to the client with the prediction in a JSON object
-    prediction = predict_interviews_well([level, lang, tweets, phd])
+    prediction = predict_interviews_well([att0, att1, att2, att3, att4, att5])
+    print(prediction)
     if prediction is not None:
         result = {"prediction": prediction} 
         return jsonify(result), 200 
@@ -41,7 +49,9 @@ def predict():
 def tdidt_predict(header, tree, instance):
     # returns "True" or "False" if a leaf node is hit
     # None otherwise 
+    # print("TDIDT")
     info_type = tree[0]
+    # print("info_type:", info_type)
     if info_type == "Attribute":
         # get the value of this attribute for the instance
         attribute_index = header.index(tree[1])
@@ -49,6 +59,7 @@ def tdidt_predict(header, tree, instance):
         for i in range(2, len(tree)):
             value_list = tree[i]
             if value_list[1] == instance_value:
+                # print("value list:", value_list[1])
                 # recurse, we have a match!!
                 return tdidt_predict(header, value_list[2], instance)
     else: # Leaf
@@ -64,7 +75,9 @@ def predict_interviews_well(instance):
 
     print("header:", header)
     print("tree:", tree)
-    print("YAY!")
+    print("instance:", instance)
+    # print("YAY!")
+    # return("True")
 
     # traverse the tree to make a prediction
     # write a recursive algorithm to do this (predict() for PA6)
